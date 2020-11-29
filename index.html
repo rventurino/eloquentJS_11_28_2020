@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Texturina&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>EloquentJS Studies</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Eloquent JS</h1>
+      <h2>Study Session: 11/28/2020</h2>
+      <br />
+      <h4>CHAPTER 14: DOCUMENT OBJECT MODEL</h4>
+      <br />
+
+      <h3>...Continued</h3>
+      <h2>Changing the document</h2>
+      <p>
+        Nodes have a remove method to remove them from their current parent
+        node. It looks like this:
+      </p>
+      <p class="code">
+        let paragraphs = document.body.getElementsByTagName("p");
+        document.body.insertBefore(paragraphs[2], paragraphs[1]);
+      </p>
+      <h3>Move an element:</h3>
+      <p>One</p>
+      <p>Two</p>
+      <p>Three</p>
+      <script>
+        let paragraphs = document.body.getElementsByTagName("p");
+        document.body.insertBefore(paragraphs[2], paragraphs[1]);
+      </script>
+      <p>
+        A node can only exist once in the document, therefore when you move
+        paragraphs[2]"Two" to paragraphs[1] it is actually uprooted and moved to
+        its new index
+      </p>
+      <h3>Creating Nodes</h3>
+      <h6>example</h6>
+      <p>
+        Say we watnt to write a script that replaces all image tags in the
+        document with the text held in their alt attributes, which then
+        specifies an alternate textual repreanetation of the image
+      </p>
+
+      <p class="code">
+        function replaceImages() { <br />
+        let images =<br />
+        document.body.getElementsByTagName("img"); <br />
+        for (let i = images.length -<br />
+        1; i >= 0; i--) { <br />
+        let image = images[i]; <br />
+        if (image.alt) { <br />
+        let text =document.createTextNode(image.alt); <br />
+        image.parentNode.replaceChild(text,image);<br />
+        } <br />
+        } <br />
+        } <br /><br />
+        function refreshPage() {<br />
+        window.location.reload();<br />
+        }<br />
+      </p>
+      <br />
+      <h5>result</h5>
+      <p>
+        The <img src="img/cat.png" alt="Cat" /> in the
+        <img src="img/hat.png" alt="Hat" />.
+      </p>
+      <p>
+        <button onclick="replaceImages()">Replace</button>
+
+        <button onclick="refreshPage()">refreshPage</button>
+      </p>
+      <p></p>
+      <script>
+        function replaceImages() {
+          let images = document.body.getElementsByTagName("img");
+          console.log(image.parentNode);
+          for (let i = images.length - 1; i >= 0; i--) {
+            let image = images[i];
+            if (image.alt) {
+              let text = document.createTextNode(image.alt);
+              image.parentNode.replaceChild(text, image);
+            }
+          }
+        }
+        function refreshPage() {
+          window.location.reload();
+        }
+      </script>
+    </div>
+  </body>
+</html>
